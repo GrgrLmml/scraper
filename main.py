@@ -12,8 +12,6 @@ def run(event, context):
          `timestamp` field contains the publish time.
     """
 
-    variables2 = json.loads(event['data'])
-    print(variables2)
     payload = event['data']
     print(payload)
 
