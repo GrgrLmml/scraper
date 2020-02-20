@@ -6,6 +6,19 @@ cloud_client = cloud_logging.Client()
 log_name = 'cloudfunctions.googleapis.com%2Fcloud-functions'
 cloud_logger = cloud_client.logger(log_name)
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+
+# Project ID is determined by the GCLOUD_PROJECT environment variable
+# Use the application default credentials
+# cred = credentials.ApplicationDefault()
+# firebase_admin.initialize_app(cred, {
+#   'projectId': project_id,
+# })
+
+cred = credentials.Certificate('twitter-scraper.json')
+firebase_admin.initialize_app(cred)
 
 def run(event, context):
     """Background Cloud Function to be triggered by Pub/Sub.
@@ -28,28 +41,21 @@ def run(event, context):
     print(payload)
 
 
-    import firebase_admin
-    from firebase_admin import credentials
-    from firebase_admin import firestore
 
-    # Project ID is determined by the GCLOUD_PROJECT environment variable
-    # Use the application default credentials
-    # cred = credentials.ApplicationDefault()
-    # firebase_admin.initialize_app(cred, {
-    #   'projectId': project_id,
-    # })
-
-    cred = credentials.Certificate('twitter-scraper.json')
-    firebase_admin.initialize_app(cred)
 
     db = firestore.Client()
     coll = db.collection('news-articles')
 
     if payload['handle'] == 'reuters':
+        print('scrape reuters')
         doc = reuters.scrape(payload['url'])
         doc['id'] = payload['id']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
+    else:
+        print('not yet implemented')
+        print(payload['handle'])
+        print(payload['url'])
 
 
 
