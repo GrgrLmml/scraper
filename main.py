@@ -1,3 +1,5 @@
+import base64
+import json
 import reuters
 import google.cloud.logging as cloud_logging
 cloud_client = cloud_logging.Client()
@@ -18,7 +20,11 @@ def run(event, context):
 
     print("called")
     print(event)
-    payload = event['data']
+    payload64 = event['data']
+    print(payload64)
+    payloadJson = base64.b64decode(payload64)
+    print(payloadJson)
+    payload = json.loads(payloadJson)
     print(payload)
 
 
