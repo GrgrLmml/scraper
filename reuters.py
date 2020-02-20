@@ -17,15 +17,15 @@ def scrape(url):
 
     title = soup.find_all('h1', class_='ArticleHeader_headline')
 
-    z = title[0].get_text()
-
-    doc['title'] = z
+    if len(title) > 0:
+        z = title[0].get_text()
+        doc['title'] = z
 
     article = soup.find_all(class_='StandardArticleBody_body')
 
-    txt = article[0].get_text()
-
-    doc['text'] = txt
+    if len(article) > 0:
+        txt = article[0].get_text()
+        doc['text'] = txt
 
     return doc
 

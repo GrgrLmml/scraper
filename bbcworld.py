@@ -15,9 +15,9 @@ def scrape(url):
 
     title = soup.find_all('h1', class_='story-body__h1')
 
-    z = title[0].get_text()
-
-    doc['title'] = z
+    if len(title) > 0:
+        z = title[0].get_text()
+        doc['title'] = z
 
     # intro = soup.find_all(class_='story-body__introduction')
     #
