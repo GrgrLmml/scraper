@@ -2,6 +2,7 @@ import base64
 import json
 
 import bbcworld
+import cnn
 import reuters
 import google.cloud.logging as cloud_logging
 cloud_client = cloud_logging.Client()
@@ -60,6 +61,13 @@ def run(event, context):
         doc = bbcworld.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle']=payload['handle']
+        doc_ref = coll.document(doc['id'])
+        doc_ref.set(doc)
+    elif payload['handle'] == 'ccn':
+        print('scrape cnn')
+        doc = cnn.scrape(payload['url'])
+        doc['id'] = payload['id']
+        doc['handle'] = payload['handle']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
     else:
