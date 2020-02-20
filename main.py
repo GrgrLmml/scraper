@@ -1,5 +1,9 @@
 import reuters
-import json
+import google.cloud.logging as cloud_logging
+cloud_client = cloud_logging.Client()
+log_name = 'cloudfunctions.googleapis.com%2Fcloud-functions'
+cloud_logger = cloud_client.logger(log_name)
+
 
 def run(event, context):
     """Background Cloud Function to be triggered by Pub/Sub.
@@ -12,8 +16,11 @@ def run(event, context):
          `timestamp` field contains the publish time.
     """
 
+    print("called")
+    print(event)
     payload = event['data']
     print(payload)
+
 
     import firebase_admin
     from firebase_admin import credentials
