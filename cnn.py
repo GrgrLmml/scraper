@@ -31,5 +31,5 @@ def scrape(url):
 
     return doc
 
-doc = scrape('https://edition.cnn.com/2020/01/22/us/homeless-veteran-burial-trnd/index.html?utm_source=twCNN&utm_content=2020-01-22T13%3A02%3A47&utm_term=link&utm_medium=social')
-print(doc)
+# doc = scrape('https://edition.cnn.com/2020/01/22/us/homeless-veteran-burial-trnd/index.html?utm_source=twCNN&utm_content=2020-01-22T13%3A02%3A47&utm_term=link&utm_medium=social')
+# print(doc)
