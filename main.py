@@ -23,6 +23,7 @@ from firebase_admin import firestore
 cred = credentials.Certificate('twitter-scraper.json')
 firebase_admin.initialize_app(cred)
 
+
 def run(event, context):
     """Background Cloud Function to be triggered by Pub/Sub.
     Args:
