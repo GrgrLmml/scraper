@@ -4,13 +4,12 @@ import re
 from bs4 import BeautifulSoup
 
 
-def scrape(tweet):
-    splitted = re.split(r'(?<=\s)(?=https)', tweet)
-    url = ''
+def scrape(url):
 
     r1 = requests.get(url)
 
     doc = {'url': url}
+
 
     content = r1.content
 
@@ -29,7 +28,6 @@ def scrape(tweet):
     doc['text'] = txt
 
     return doc
-
 
 # doc = scrape('https://t.co/FjjrOCMixG')
 # print(doc['title'])
