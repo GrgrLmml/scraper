@@ -35,14 +35,14 @@ def run(event, context):
          `timestamp` field contains the publish time.
     """
 
-    print("called")
-    print(event)
+    # print("called")
+    # print(event)
     payload64 = event['data']
-    print(payload64)
+    # print(payload64)
     payloadJson = base64.b64decode(payload64)
-    print(payloadJson)
+    # print(payloadJson)
     payload = json.loads(payloadJson)
-    print(payload)
+    # print(payload)
 
 
 
