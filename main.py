@@ -1,15 +1,13 @@
 import base64
 import json
 
-import bbcworld
-import cnn
-import reuters
-import firebase_admin
-from firebase_admin import credentials
+from scrapers import bbcworld, cnn, reuters
+# import firebase_admin
+# from firebase_admin import credentials
 from firebase_admin import firestore
 
-cred = credentials.Certificate('twitter-scraper.json')
-firebase_admin.initialize_app(cred)
+# cred = credentials.Certificate('twitter-scraper.json')
+# firebase_admin.initialize_app(cred)
 
 
 def run(event, context):
