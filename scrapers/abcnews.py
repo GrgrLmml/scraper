@@ -1,7 +1,7 @@
 # importing the necessary packages
 import requests
-import re
 from bs4 import BeautifulSoup
+
 
 def scrape(url):
     r1 = requests.get(url)
@@ -12,26 +12,25 @@ def scrape(url):
 
     soup = BeautifulSoup(content, 'html5lib')
 
-    title = soup.find_all('h1', class_='story-body__h1')
+    title = soup.find_all(class_='Article__Headline__Title', limit=1)
 
     if len(title) > 0:
         z = title[0].get_text()
         doc['title'] = z
 
-    # intro = soup.find_all(class_='story-body__introduction')
-    #
-    # txt = intro[0].get_text()
+    headline_descr = soup.find_all(class_='Article__Headline__Desc')
 
-    paragraphs = soup.find(class_='story-body__inner').find_all('p')
-    txt = ''
+    txt = headline_descr[0].get_text()
+
+    paragraphs = soup.find(class_='Article__Content story').find_all('p')
     for el in paragraphs:
         my_txt = el.get_text()
-        txt += my_txt
+        txt += (my_txt + " ")
 
     doc['text'] = txt
 
     return doc
 
 
-# doc = scrape('https://bbc.in/2TC7NaE')
+# doc = scrape('https://abcn.ws/2maPawm')
 # print(doc)

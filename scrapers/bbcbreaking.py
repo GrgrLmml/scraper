@@ -1,8 +1,7 @@
-# importing the necessary packages
 import requests
-import re
 from bs4 import BeautifulSoup
 
+#is actually the same as BBC world
 def scrape(url):
     r1 = requests.get(url)
 
@@ -12,7 +11,7 @@ def scrape(url):
 
     soup = BeautifulSoup(content, 'html5lib')
 
-    title = soup.find_all('h1', class_='story-body__h1')
+    title = soup.find_all('h1', class_='story-body__h1', limit=1)
 
     if len(title) > 0:
         z = title[0].get_text()
@@ -26,12 +25,12 @@ def scrape(url):
     txt = ''
     for el in paragraphs:
         my_txt = el.get_text()
-        txt += my_txt
+        txt += my_txt + " "
 
     doc['text'] = txt
 
     return doc
 
 
-# doc = scrape('https://bbc.in/2TC7NaE')
+# doc = scrape('https://bbc.in/2jKEIdL')
 # print(doc)
