@@ -33,6 +33,8 @@ def run(event, context):
         doc = reuters.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -42,6 +44,8 @@ def run(event, context):
         doc = bbcworld.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -51,6 +55,8 @@ def run(event, context):
         doc = cnn.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -60,6 +66,8 @@ def run(event, context):
         doc = abcnews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -69,6 +77,8 @@ def run(event, context):
         doc = bbcbreaking.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -78,6 +88,8 @@ def run(event, context):
         doc = cbsnews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -87,6 +99,8 @@ def run(event, context):
         doc = davos.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -96,6 +110,8 @@ def run(event, context):
         doc = emarketer.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -114,6 +130,8 @@ def run(event, context):
         doc = latimes.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -123,6 +141,8 @@ def run(event, context):
         doc = telegraphnews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -132,6 +152,8 @@ def run(event, context):
         doc = usatoday.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
@@ -141,6 +163,8 @@ def run(event, context):
         doc = yahoonews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
+        doc['date'] = payload['date']
+        doc['time_stamp'] = payload['time_stamp']
         doc_ref = coll.document(doc['id'])
         doc_ref.set(doc)
 
