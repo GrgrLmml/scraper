@@ -25,150 +25,116 @@ def run(event, context):
     payload = json.loads(payloadJson)
     print(payload)
     db = firestore.Client()
-#    coll = db.collection('news-articles')
-
+    doc = None
     if payload['handle'] == 'reuters':
         print('scrape reuters')
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         doc = reuters.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'bbcworld':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape bbc')
         doc = bbcworld.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'ccn':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape cnn')
         doc = cnn.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'abc':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape abc')
         doc = abcnews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'bbcbreaking':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape bbcbreaking')
         doc = bbcbreaking.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'cbsnews':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape cbsnews')
         doc = cbsnews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'davos':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape davos')
         doc = davos.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'emarketer':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape emarketer')
         doc = emarketer.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'guardiannews':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape guardiannews')
         doc = guardiannews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'latimes':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape latimes')
         doc = latimes.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'telegraphnews':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape telegraphnews')
         doc = telegraphnews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     elif payload['handle'] == 'usatoday':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape usatoday')
         doc = usatoday.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
+
 
     elif payload['handle'] == 'yahoonews':
-        coll = db.collection("news").document("articles").collection(payload['handle'])
         print('scrape yahoonews')
         doc = yahoonews.scrape(payload['url'])
         doc['id'] = payload['id']
         doc['handle'] = payload['handle']
         doc['date'] = payload['date']
         doc['time_stamp'] = payload['time_stamp']
-        doc_ref = coll.document(doc['id'])
-        doc_ref.set(doc)
 
     else:
         print('not yet implemented')
         print(payload['handle'])
         print(payload['url'])
+
+    if doc:
+        coll = db.collection("news").document("articles").collection(payload['handle'])
+        doc_ref = coll.document(doc['id'])
+        doc_ref.set(doc)

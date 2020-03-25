@@ -38,3 +38,4 @@ soupsieve==1.9.5
 uritemplate==3.0.1
 urllib3==1.25.8
 webencodings==0.5.1
+firebase-admin==3.2.1

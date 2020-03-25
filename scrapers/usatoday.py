@@ -1,10 +1,16 @@
 # importing the necessary packages
 import requests
 from bs4 import BeautifulSoup
+
 from fake_useragent import UserAgent
 
 
 def scrape(url):
+    session = requests.Session()  # so connections are recycled
+    resp = session.head(url, allow_redirects=True)
+    print(resp.url)
+    url = resp.url
+
     ua = UserAgent()
     headers = {'User-Agent': ua.random}
 
@@ -38,5 +44,5 @@ def scrape(url):
     return doc
 
 
-# doc = scrape('https://eu.usatoday.com/story/sports/columnist/dan-wolken/2019/09/28/college-football-week-5-takeaways-clemson-ohio-state-auburn/3809949002/')
+# doc = scrape('https://bit.ly/2UyFVTV')
 # print(doc)
